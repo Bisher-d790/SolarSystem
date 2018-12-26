@@ -1,0 +1,26 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class ChangeLookAtTarget : MonoBehaviour {
+
+	public GameObject target; // the target that the camera should look at
+
+	void Start() {
+		if (target == null) 
+		{
+			target = this.gameObject;
+			Debug.Log ("ChangeLookAtTarget target not specified. Defaulting to parent GameObject");
+		}
+	}
+
+	// Called when MouseDown on this gameObject
+	void OnMouseDown () {
+		// change the target of the LookAtTarget script to be this gameobject.
+		float x=0;
+		LookAtTarget.target = target;
+		x = 30*target.transform.localScale.x;
+		if (x > 50)
+			x = 20;
+		Camera.main.fieldOfView = x;
+	}
+}
